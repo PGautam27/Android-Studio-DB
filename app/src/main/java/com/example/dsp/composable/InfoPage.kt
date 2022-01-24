@@ -163,5 +163,18 @@ fun InfoPage(navController: NavController) {
                 fontSize = 20.sp
             )
         }
+        Spacer(modifier = Modifier.padding(15.dp))
+        Button(onClick = {
+            navController.navigate(Screens.CallDatabase.route)
+        },
+            modifier = Modifier
+                .clip(RoundedCornerShape(19.dp))
+                .background(Color(0xFF4C78DB))
+        ) {
+            Text(
+                text = "View DB",
+                fontSize = 20.sp
+            )
+        }
     }
 }

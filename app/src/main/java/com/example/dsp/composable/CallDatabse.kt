@@ -4,7 +4,10 @@ import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -19,6 +22,7 @@ import com.example.dsp.ui.theme.Purple500
 import com.example.dsp.viewmodel.SampleViewModel
 import com.example.dsp.viewmodel.SampleViewModelFactory
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,34 +51,41 @@ fun CallDatabase() {
     )
 
    // sampleViewModel.addSample(insertSampleData)
-
+   // val deleteAllRecord = sampleViewModel.deleteAllRecord()
     val getAllRecord = sampleViewModel.readAllData.observeAsState(listOf()).value
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(Color.White)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .background(Purple500),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+        Scaffold(
+            floatingActionButton = {
+                IconButton(onClick = { sampleViewModel.deleteAllRecord()}) {
+                    Icon(Icons.Default.Clear,"")
+                }
+            }
         ) {
-            Text(
-                text = "Database List Item",
-                color = Color.White,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
+            /*Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .background(Purple500),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
 
-        LazyColumn(
-            modifier = Modifier.padding(10.dp)
-        ) {
-            items(getAllRecord.size) { index ->
-                AddDataListItem(getAllRecord[index])
+            }*/
+
+            LazyColumn(
+                modifier = Modifier.padding(10.dp)
+            ) {
+
+                items(getAllRecord.size) { index ->
+                    AddDataListItem(getAllRecord[index])
+                }
             }
         }
-    }
+        }
+
 }
+
