@@ -9,7 +9,7 @@ interface SampleDao {
     @Query("SELECT * FROM `Sample Data`")
     fun getAllData(): LiveData<List<SampleEntity>>
 
-    @Query("SELECT * FROM `sample data` WHERE id = :id")
+    @Query("SELECT * FROM `Sample data` WHERE id = :id")
     fun getById(id: Int): SampleEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
