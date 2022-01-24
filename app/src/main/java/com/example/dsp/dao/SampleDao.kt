@@ -12,7 +12,7 @@ interface SampleDao {
     @Query("SELECT * FROM `sample data` WHERE id = :id")
     fun getById(id: Int): SampleEntity?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: List<SampleEntity>)
 
     @Update

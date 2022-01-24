@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class SampleViewModel(application: Application): AndroidViewModel(application) {
-    private val readAllData: LiveData<List<SampleEntity>>
+    val readAllData: LiveData<List<SampleEntity>>
     private val repository: SampleRepository
 
     init {
@@ -46,10 +46,10 @@ class SampleViewModel(application: Application): AndroidViewModel(application) {
 
 class SampleViewModelFactory(
     private val application: Application
-): ViewModelProvider.Factory{
-    override fun <T: ViewModel?> create(modelClass: Class<T>):T {
+): ViewModelProvider.Factory {
+    override fun <T: ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        if(modelClass.isAssignableFrom(SampleViewModel::class.java)){
+        if (modelClass.isAssignableFrom(SampleViewModel::class.java)) {
             return SampleViewModel(application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
