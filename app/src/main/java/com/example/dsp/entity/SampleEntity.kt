@@ -21,6 +21,7 @@ data class SampleEntity(
 
     @ColumnInfo(name = "createdDate")
     var createdDate: String
+    
 ) {
 
 }
